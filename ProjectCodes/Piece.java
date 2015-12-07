@@ -15,7 +15,7 @@ class Piece {
     
     private double x;
     private double y;
-    private int type;
+    private int type; //0 for arena walls, 1 for snake, 2 for baits
     private Image image;
     
     public Piece(double x,double y,int type)

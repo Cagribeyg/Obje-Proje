@@ -8,7 +8,7 @@
  *
  * @author Cihan
  */
-public abstract class Bait {
+public abstract class Bait { //done
     
     protected String color;
     protected Snake snake;
