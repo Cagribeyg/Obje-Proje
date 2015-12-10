@@ -20,7 +20,7 @@ class Snake
     
     public Snake(Piece[] parts)
     {
-        length = 1;
+        length = 3;
         score = 0;
         direction = 1;
         snakeParts = new LinkedList<Piece>();
@@ -62,9 +62,31 @@ class Snake
         b.setSnake(this);
     }
     
-    public void moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
+    public Piece moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
     {
-        snakeParts.addFirst(snakeParts.pollLast());//we should change the coordinates
+        Piece last = snakeParts.pollLast();
+        int xCoordinate = snakeParts.getFirst().getX();
+        int yCoordinate = snakeParts.getFirst().getY();
+        if(direction==0)
+        {
+            last.setY(yCoordinate-1);
+        }
+        else if(direction==1)
+        {
+            last.setX(xCoordinate+1);
+        }
+        else if(direction==2)
+        {
+            last.setY(yCoordinate+1);
+        }
+        else
+        {
+            last.setX(xCoordinate-1);
+        }
+        
+        snakeParts.addFirst(last);//we should change the coordinates
+        
+        return last;
         
         //We must change the arena according to this
     }

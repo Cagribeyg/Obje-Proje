@@ -32,6 +32,8 @@ public class Arena {
         //creating snake
         snake = createSnake();
         
+        //creating baits
+        
     }
     
     public void createWalls()
@@ -52,6 +54,12 @@ public class Arena {
             }
         
     }
+    
+    public void createBaits()
+    {
+        
+    }
+    
     public Snake createSnake()
     {
         Piece head = new Piece(sizeOfArena/2,sizeOfArena/2,1);//middle of the arena
@@ -70,4 +78,22 @@ public class Arena {
         return new Snake(parts);
         
     }
+    
+    public Snake getSnake()
+    {
+        return this.snake;
+    }
+    
+    public ArrayList<Bait> getBaits()
+    {
+        return this.baits;
+    }
+    
+    public void updatePiece(int sourceX,int sourceY, Piece updated)
+    {
+        board[sourceX][sourceY] = null;
+        board[updated.getX()][updated.getY()] = updated;
+    }
+    
+    
 }
