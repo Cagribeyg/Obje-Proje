@@ -92,6 +92,11 @@ class Snake
         
         //We must change the arena according to this
     }
+    
+    public Piece getTail()
+    {
+        return snakeParts.getLast();
+    }
     public void move(boolean toRight)
     {
         if(toRight && direction !=3)

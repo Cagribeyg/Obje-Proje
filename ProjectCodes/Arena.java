@@ -104,23 +104,24 @@ public class Arena {
         return this.baits;
     }
     
-    public void updatePiece(int sourceX,int sourceY, Piece updated)
-    {
-        board[sourceX][sourceY] = null;
-        board[updated.getX()][updated.getY()] = updated;
-    }
-    
     //returns the bait which is current on the arena
     public Bait getActiveBait(){
     	return baits.get(baitIndex);
-    } 
+    }
+    
+    public boolean moveSnake()
+    {
+        Piece tail = snake.getTail();
+        Piece newHead = snake.moveRegular();
+        if(newHead == null)
+            return false;
+        board[tail.getX()][tail.getY()] = null;
+        board[newHead.getX()][newHead.getY()] = newHead;
+        return true;
+    }
     
     //controls whether the snake has eaten the current bait or not
-    public boolean eat(){
-    	if(snake.moveRegular().equals(baits.get(baitIndex).retrievePiece())){
-    		return true;
-    	}
-    	else
-    		return false;
+    public boolean eat(){ //todo
+        return true;
     }
 }
