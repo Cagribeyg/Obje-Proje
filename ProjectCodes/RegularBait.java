@@ -13,10 +13,7 @@ public class RegularBait extends Bait{
     
   }
   
-  @Override 
-  public void affect(){
   
-  }
   
   @Override
   public void setSnake(Snake snake){
