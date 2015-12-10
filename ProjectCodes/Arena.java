@@ -18,6 +18,9 @@ public class Arena {
     private ArrayList<Bait> baits;
     private Random generator;
     private final int sizeOfArena=100;
+    private int baitIndex;
+    
+    private final int BAIT_NUM = 30;
     
     public Arena()
     {
@@ -32,6 +35,8 @@ public class Arena {
         //creating snake
         snake = createSnake();
         
+        //Random generator
+        generator = new Random();
         //creating baits
         
     }
@@ -47,7 +52,7 @@ public class Arena {
                 }
                 else//only 2 walls
                 {
-                    board[i][0] = new Piece(i,0,0);//put the wall at the beggining of the row
+                    board[i][0] = new Piece(i,0,0);//put the wall at the beginning of the row
                     board[i][sizeOfArena-1] = new Piece(i,sizeOfArena-1,0);//put the wall at the end of the row
                     break;
                 }
@@ -58,6 +63,12 @@ public class Arena {
     public void createBaits()
     {
         
+    }
+    
+    public Bait giveBait(){
+    	baitIndex = generator.nextInt(BAIT_NUM);
+    	board[ baits.get(baitIndex).getX()][] = 
+    	return baits.get(baitIndex);
     }
     
     public Snake createSnake()
@@ -95,5 +106,7 @@ public class Arena {
         board[updated.getX()][updated.getY()] = updated;
     }
     
-    
+    public Bait getActiveBait(){
+    	return baits.get(baitIndex);
+    }   
 }

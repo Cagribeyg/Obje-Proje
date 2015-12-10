@@ -17,6 +17,7 @@ class Snake
     private int score;
     private LinkedList<Piece> snakeParts;
     private int direction; //0 is up, 1 is right,2 is down, 3 is left
+    private boolean isSuperSnake;
     
     public Snake(Piece[] parts)
     {
@@ -28,12 +29,13 @@ class Snake
         snakeParts.add(parts[0]);//add head
         snakeParts.addLast(parts[1]);//add second part
         snakeParts.addLast(parts[2]);//add third part
+        isSuperSnake = false;
         
     }
     
-    public void die(boolean isSuperSnake)
+    public void die()
     {
-        if(isSuperSnake)
+        if(this.isSuperSnake)
             return;//todo
     }
     
@@ -101,5 +103,10 @@ class Snake
         else//!toRight && direction ==3
             direction=3;
            
+    }
+    
+    //makes the snake SuperSnake by bait's affect method
+    public void makeSuper(){
+    	this.isSuperSnake = true;
     }
 }
