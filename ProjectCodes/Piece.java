@@ -13,12 +13,12 @@ import java.awt.Image;
  */
 class Piece {
     
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private int type; //0 for arena walls, 1 for snake, 2 for baits
     private Image image;
     
-    public Piece(double x,double y,int type)
+    public Piece(int x,int y,int type)
     {
         this.x=x;
         this.y=y;
@@ -26,22 +26,22 @@ class Piece {
     }
     
     
-   public void setX(double x)
+   public void setX(int x)
    {
        this.x=x;
    }
    
-   public void setY(double y)
+   public void setY(int y)
    {
        this.y=y;
    }
    
-   public double getX()
+   public int getX()
    {
        return x;
    }
    
-   public double getY()
+   public int getY()
    {
        return y;
    }

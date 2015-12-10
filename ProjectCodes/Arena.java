@@ -29,6 +29,9 @@ public class Arena {
         //creating walls
         createWalls();
         
+        //creating snake
+        snake = createSnake();
+        
     }
     
     public void createWalls()
@@ -49,5 +52,22 @@ public class Arena {
             }
         
     }
-    
+    public Snake createSnake()
+    {
+        Piece head = new Piece(sizeOfArena/2,sizeOfArena/2,1);//middle of the arena
+        Piece part2 = new Piece((sizeOfArena/2)-1,sizeOfArena/2,1);//secondPart
+        Piece part3 = new Piece((sizeOfArena/2)-2,sizeOfArena/2,1);//third part
+        
+        board[head.getX()][head.getY()] = head;//save the snake to the arena
+        board[part2.getX()][part2.getY()] = part2;
+        board[part3.getX()][part3.getY()] = part3;
+        
+        Piece[] parts = new Piece[3];// pass it to the snake
+        parts[0] = head;
+        parts[1]= part2;
+        parts[2] = part3;
+        
+        return new Snake(parts);
+        
+    }
 }

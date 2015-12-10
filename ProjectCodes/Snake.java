@@ -18,14 +18,17 @@ class Snake
     private LinkedList<Piece> snakeParts;
     private int direction; //0 is up, 1 is right,2 is down, 3 is left
     
-    public Snake(Piece head)
+    public Snake(Piece[] parts)
     {
         length = 1;
         score = 0;
         direction = 1;
         snakeParts = new LinkedList<Piece>();
         
-        snakeParts.add(head);
+        snakeParts.add(parts[0]);//add head
+        snakeParts.addLast(parts[1]);//add second part
+        snakeParts.addLast(parts[2]);//add third part
+        
     }
     
     public void die(boolean isSuperSnake)
