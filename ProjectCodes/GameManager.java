@@ -35,6 +35,9 @@ public class GameManager {
 	public boolean didEat(Snake snake){
 		if(arena.eat() == true){
 			arena.getSnake().eatBait(arena.getActiveBait());
+			return true;
 		}
+		else 
+			return false;
 	}
 }

@@ -13,6 +13,7 @@ import java.util.Random;
  * @author Cihan
  */
 public class Arena {
+	//Properties
     private Snake snake;
     private Piece[][] board;
     private ArrayList<Bait> baits;
@@ -20,8 +21,10 @@ public class Arena {
     private final int sizeOfArena=100;
     private int baitIndex;
     
+    //CONSTANTS
     private final int BAIT_NUM = 30;
     
+    //constructor
     public Arena()
     {
         //creating the board
@@ -65,9 +68,10 @@ public class Arena {
         
     }
     
+    //Places a random bait into the arena
     public Bait giveBait(){
     	baitIndex = generator.nextInt(BAIT_NUM);
-    	board[ baits.get(baitIndex).getX()][] = 
+    	board[baits.get(baitIndex).retrievePiece().getX()][baits.get(baitIndex).retrievePiece().getY()] = baits.get(baitIndex).retrievePiece();
     	return baits.get(baitIndex);
     }
     
@@ -106,7 +110,17 @@ public class Arena {
         board[updated.getX()][updated.getY()] = updated;
     }
     
+    //returns the bait which is current on the arena
     public Bait getActiveBait(){
     	return baits.get(baitIndex);
-    }   
+    } 
+    
+    //controls whether the snake has eaten the current bait or not
+    public boolean eat(){
+    	if(snake.moveRegular().equals(baits.get(baitIndex).retrievePiece())){
+    		return true;
+    	}
+    	else
+    		return false;
+    }
 }

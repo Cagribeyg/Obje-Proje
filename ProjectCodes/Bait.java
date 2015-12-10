@@ -17,7 +17,7 @@ public abstract class Bait { //done
     
     public abstract void affect();
     public abstract void setSnake(Snake snake);
-    
     public abstract Piece retrievePiece();
+    
     
 }
