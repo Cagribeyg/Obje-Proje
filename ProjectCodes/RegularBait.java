@@ -7,7 +7,10 @@ public class RegularBait extends Bait{
     super.baitPiece = piece;
     
   }
-  
+   @Override
+    public void affect() {
+       
+    }
   
   
   @Override
