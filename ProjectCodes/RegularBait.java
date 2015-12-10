@@ -17,4 +17,8 @@ public class RegularBait extends Bait{
     public void setSnake(Snake snake){
         super.snake = snake;  
     }
+    @Override
+    public Piece retrievePiece() {
+        return baitPiece;
+    }
 }
