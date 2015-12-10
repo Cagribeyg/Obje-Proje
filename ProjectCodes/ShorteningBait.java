@@ -17,3 +17,4 @@ public class ShorteningBait extends Bait{
   public void setSnake(Snake snake){
 	super.snake = snake;  
   }
+}
