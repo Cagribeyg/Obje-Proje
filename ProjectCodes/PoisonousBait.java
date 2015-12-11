@@ -27,5 +27,9 @@ public class PoisonousBait extends Bait{
     public void setSnake(Snake snake) {
         super.snake=snake;
     }
+    @Override
+    public Piece retrievePiece() {
+        return baitPiece;
+    }
     
 }
