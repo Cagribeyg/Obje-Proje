@@ -9,7 +9,7 @@ public class GameOverPanel extends JPanel{
                 JPanel panel = new JPanel();
                 JLabel title = new JLabel("GAME OVER !");
                 title.setFont(new Font("Buxton Sketch", Font.PLAIN, 40));
-<<<<<<< HEAD
+
                 title.setBackground(Color.GRAY);
                 
                 StringBuilder sb = new StringBuilder(500);
@@ -27,10 +27,9 @@ public class GameOverPanel extends JPanel{
                 add(panel, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(dim1,dim2));
 		setBackground(Color.GRAY);
-=======
-                title.setBackGround(Color.GRAY);
+                title.setBackground(Color.GRAY);
                 
                 
->>>>>>> 3bc87a3369e0a2d14174f0efd8cb15166c798f09
+
 	}
 }
