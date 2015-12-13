@@ -1,4 +1,5 @@
 
+import java.awt.Graphics;
 import java.awt.Image;
 
 /*
@@ -58,6 +59,11 @@ class Piece {
    public void setImage(Image img)
    {
        image=img;
+   }
+   public void draw(Graphics g)
+   {
+	   if( !(image == null))
+		   g.drawImage(image, x, y, null);
    }
    
 }
