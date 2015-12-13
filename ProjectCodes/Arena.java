@@ -46,8 +46,10 @@ public class Arena extends Observer{
         
         //Random generator
         generator = new Random();
-        //creating 30 baits
+        
+        //creating 30 baits and putting one to board
         createBaits();
+        giveBait(); 
         
         //initializing observers
         super.master = master;
@@ -141,10 +143,12 @@ public class Arena extends Observer{
     }
     
     //Places a random bait into the arena
-    public Bait giveBait(){
-    	baitIndex = generator.nextInt(BAIT_NUM);
-    	board[baits.get(baitIndex).retrievePiece().getX()][baits.get(baitIndex).retrievePiece().getY()] = baits.get(baitIndex).retrievePiece();
-    	return baits.get(baitIndex);
+    public void giveBait(){
+        if(baits.size() == 0) //if there are no baits then create 30
+            createBaits();
+        
+    	board[baits.get(0).retrievePiece().getX()][baits.get(0).retrievePiece().getY()] = baits.get(0).retrievePiece();
+        baits.remove(0);
     }
     
     public Snake createSnake()
