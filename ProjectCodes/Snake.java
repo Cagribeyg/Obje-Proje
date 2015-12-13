@@ -156,7 +156,15 @@ class Snake
             direction=3;
            
     }
-    
+    public void reverse()
+    {
+        LinkedList<Piece> tmp = new LinkedList<Piece>();
+        while(!snakeParts.isEmpty())
+        {
+            tmp.addLast(snakeParts.pollLast());
+        }
+        snakeParts = tmp;
+    }
     //makes the snake SuperSnake by bait's affect method
     public void makeSuper(){
     	this.isSuperSnake = true;
