@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements KeyListener,ActionListener{
 	    manager.getArena().createScreen(g);  
 	}
 
-	//for opening the GameOverPanel on the GeneralPanel----------------------HANDLE!!!!!
+	//for opening the GameOverPanel on the GeneralPanel
 	private void openGameOver(){
 		this.generalIns.updateView(4,this);
 	}

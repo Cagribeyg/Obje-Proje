@@ -56,8 +56,7 @@ public class Arena extends Observer{
         super.master.add(this);
         
         //initializing timer
-        timer = new Timer(30, this);
-        timer.start();
+        
     }
     
     //creates the initial screen of the game
@@ -76,7 +75,7 @@ public class Arena extends Observer{
         for(int i=0;i<sizeOfArena;i++)
             for(int j=0;j<sizeOfArena;j++)
             {
-                if(i==0 || i==sizeOfArena)//put wall through the row
+                if(i==0 || i==sizeOfArena-1)//put wall through the row
                 {
                     board[i][j] = new Piece(i,j,0);//put the wall
                 }
@@ -90,14 +89,7 @@ public class Arena extends Observer{
     }
     
     public void createBaits()//creates the baits and fills the list with them
-    {  
-        //this list is bait occurence order.
-        ArrayList<Integer> occurence = new ArrayList<Integer>();
-        for (int i=1; i<BAIT_NUM; i++) {
-            occurence.add(new Integer(i));
-        }
-        Collections.shuffle(occurence);
-        
+    {          
         //Creating x locations of the baits
         ArrayList<Integer> xLocations = new ArrayList<Integer>();
         for (int i=2; i<sizeOfArena-2; i++) {
@@ -122,23 +114,25 @@ public class Arena extends Observer{
         
         //create one special bait and fill other with regularBaits
         Bait tmp = new BonusPointBait(baitPieces[0]);
-        baits.add(occurence.get(0),tmp);
+        baits.add(tmp);
         tmp = new ExtendingBait(baitPieces[1]);
-        baits.add(occurence.get(1),tmp);
+        baits.add(tmp);
         tmp = new PoisonousBait(baitPieces[2]);
-        baits.add(occurence.get(2),tmp);
+        baits.add(tmp);
         tmp = new ShorteningBait(baitPieces[3]);
-        baits.add(occurence.get(3),tmp);
+        baits.add(tmp);
         tmp = new SuperSnakeBait(baitPieces[4]);
-        baits.add(occurence.get(4),tmp);
+        baits.add(tmp);
         tmp = new UpsideDownBait(baitPieces[5]);
-        baits.add(occurence.get(5),tmp);
+        baits.add(tmp);
         
         for(int i=6; i<BAIT_NUM;i++)
         {
             tmp = new RegularBait(baitPieces[i]);
-            baits.add(occurence.get(i),tmp);
+            baits.add(tmp);
         }
+        
+        Collections.shuffle(baits);
             
     }
     
