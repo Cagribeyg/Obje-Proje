@@ -18,6 +18,7 @@ public class GameManager {
 	//constructor for the controller of the game
 	public GameManager(){
          master = new MasterObserver();
+         createArena();
 	}
 	
 	//additional createArena method for updating ???????
