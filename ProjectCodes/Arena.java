@@ -48,6 +48,7 @@ public class Arena extends Observer{
         generator = new Random();
         
         //creating 30 baits and putting one to board
+        baits = new ArrayList<Bait>();
         createBaits();
         giveBait(); 
         
@@ -65,7 +66,8 @@ public class Arena extends Observer{
 		//creating the arena View
 		for (int i = 0; i < sizeOfArena; i++ ){
 	    	for(int j = 0; j < sizeOfArena; j++){
-	    		board[i][j].draw(g);
+	    		if(board[i][j] != null)
+	    			board[i][j].draw(g);
 	    	}
 	    }
 	}
