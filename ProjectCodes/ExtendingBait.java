@@ -16,8 +16,8 @@ public class ExtendingBait extends Bait{
 	  int currentPoint = snake.getScore();
 	  //growing snake by 3 piece
 	  snake.grow(3);
-	  //Ýnitializing the current point
-	  int currentPoint = snake.getScore();
+	  //increasing length by 3
+	  snake.setLength(currentLength+3);
 	  //increasing score by 3
 	  snake.setScore(currentPoint+3);
 
