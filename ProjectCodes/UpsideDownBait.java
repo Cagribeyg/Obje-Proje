@@ -11,7 +11,7 @@ public class UpsideDownBait extends Bait{
   
   @Override 
   public void affect(){
-  	snakeParts.reverse();
+  	snake.reverse();
   }
   
   @Override
