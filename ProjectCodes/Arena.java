@@ -28,7 +28,7 @@ public class Arena extends Observer{
     
     //CONSTANTS
     private final int BAIT_NUM = 30;
-    private final int sizeOfArena = 100;
+    private final int sizeOfArena = 25;
     
     //constructor
     public Arena(MasterObserver master)
@@ -62,12 +62,17 @@ public class Arena extends Observer{
     
     //creates the initial screen of the game
 	public void createScreen(Graphics g){
-		
+		int factor=10;
 		//creating the arena View
 		for (int i = 0; i < sizeOfArena; i++ ){
 	    	for(int j = 0; j < sizeOfArena; j++){
 	    		if(board[i][j] != null)
+	    		{
+	    			board[i][j].setFactor(factor);
 	    			board[i][j].draw(g);
+	    			factor +=10;
+	    		}
+	    			
 	    	}
 	    }
 	}
@@ -109,7 +114,7 @@ public class Arena extends Observer{
         //creating pieces for baits
         Piece[] baitPieces = new Piece[30];
         
-        for(int i=0; i< BAIT_NUM; i++)
+        for(int i=0; i< BAIT_NUM-20; i++)
         {
             baitPieces[i] = new Piece(xLocations.get(i),yLocations.get(i),2);
         }
