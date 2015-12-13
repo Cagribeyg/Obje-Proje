@@ -13,13 +13,32 @@ public class GameOverPanel extends JPanel{
                 title.setBackground(Color.GRAY);
                 
                 StringBuilder sb = new StringBuilder(500);
+                StringBuilder sb2 = new StringBuilder(500);
                 sb.append("<html><br></br>").
                         append("The Game is over.").
                         append("<br></br>").
-                        append("<br>Your Score is:</br>");
-                ///////High Score will be shown here
-                ///////code will be updated
-                JLabel gameOver = new JLabel(sb.toString());
+                        append("<br>Your Score is:</br>").
+                        append("<br></br>");
+                String result = sb.toString();
+                
+               
+                String currentLine;
+                String temp = "";
+                try
+                {
+                    BufferedReader reader = new BufferedReader(new FileReader("high_scores.txt"));
+                    while((currentLine=reader.readLine())!=null)
+                    {
+                        temp="";
+                        temp=currentLine;                    
+                    }
+                }
+                catch(IOException e)
+                        {}
+                
+                result = result.concat(temp);
+                
+                JLabel gameOver = new JLabel(result);
                 gameOver.setFont(new Font("Buxton Sketch", Font.PLAIN, 18));
                 panel.setPreferredSize(new Dimension(dim1,dim2));
 		panel.add(title);
