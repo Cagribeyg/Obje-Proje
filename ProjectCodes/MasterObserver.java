@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.awt.Graphics;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,12 +21,11 @@ public class MasterObserver {
         observers.add(obs);
     }
     
-    public void notifyObservers()
+    public void notifyObservers(Graphics g)
     {
         for(Observer obs : observers )
         {
-            obs.update();
+            obs.update(g);
         }
-    }
-    
+    }  
 }

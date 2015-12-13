@@ -2,6 +2,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.awt.event.*;
+import java.awt.Graphics;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,17 +16,17 @@ import java.util.Random;
  *
  * @author Cihan
  */
-public class Arena extends Observer {
+public class Arena extends Observer{
 	//Properties
     private Snake snake;
     private Piece[][] board;
     private ArrayList<Bait> baits;
     private Random generator;
-    private final int sizeOfArena=100;
     private int baitIndex;
     
     //CONSTANTS
     private final int BAIT_NUM = 30;
+    private final int sizeOfArena = 100;
     
     //constructor
     public Arena(MasterObserver master)
@@ -120,9 +123,7 @@ public class Arena extends Observer {
             tmp = new RegularBait(baitPieces[i]);
             baits.add(occurence.get(i),tmp);
         }
-        
-        
-        
+            
     }
     
     //Places a random bait into the arena
@@ -182,8 +183,18 @@ public class Arena extends Observer {
         return true;
     }
 
-
-    public void update() {
-        //todo painting and stuff
+    //updates the view of the arena
+    public void update(Graphics g) {
+    	
+    	//moving the snake
+    	moveSnake();
+    	
+    	//redrawing the arena
+        for (int i = 0; i < sizeOfArena; i++ ){
+        	for(int j = 0; j < sizeOfArena; j++){
+        		board[i][j].draw(g);
+        		//repaint();
+        	}
+        }
     }
 }

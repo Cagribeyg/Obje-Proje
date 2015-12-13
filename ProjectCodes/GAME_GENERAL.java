@@ -5,7 +5,6 @@
 
 import javax.swing.JFrame;
 
-
 public class GAME_GENERAL {
 	
 	public static void main(String[] args){

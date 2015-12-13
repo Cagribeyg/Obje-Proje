@@ -60,6 +60,7 @@ class Piece {
    {
        image=img;
    }
+  
    public void draw(Graphics g)
    {
 	   if( !(image == null))

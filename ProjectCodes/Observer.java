@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 
+
+import java.awt.Graphics;
+
 /**
  *
  * @author Cihan
  */
 public abstract class Observer{
     protected MasterObserver master;
-    public abstract void update();
+    public abstract void update(Graphics g);
 }
