@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author Cihan
  */
-public class Arena {
+public class Arena extends Observer {
 	//Properties
     private Snake snake;
     private Piece[][] board;
@@ -26,7 +26,7 @@ public class Arena {
     private final int BAIT_NUM = 30;
     
     //constructor
-    public Arena()
+    public Arena(MasterObserver master)
     {
         //creating the board
         board = new Piece[sizeOfArena][];//Size may be change
@@ -41,7 +41,13 @@ public class Arena {
         
         //Random generator
         generator = new Random();
-        //creating baits
+        //creating 30 baits
+        createBaits();
+        
+        //initializing observers
+        super.master = master;
+        super.master.add(this);
+        
         
     }
     
@@ -174,5 +180,10 @@ public class Arena {
     //controls whether the snake has eaten the current bait or not
     public boolean eat(){ //todo
         return true;
+    }
+
+
+    public void update() {
+        //todo painting and stuff
     }
 }
