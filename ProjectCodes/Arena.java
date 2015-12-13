@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /*
@@ -63,8 +64,58 @@ public class Arena {
         
     }
     
-    public void createBaits()
-    {
+    public void createBaits()//creates the baits and fills the list with them
+    {  
+        //this list is bait occurence order.
+        ArrayList<Integer> occurence = new ArrayList<Integer>();
+        for (int i=1; i<BAIT_NUM; i++) {
+            occurence.add(new Integer(i));
+        }
+        Collections.shuffle(occurence);
+        
+        //Creating x locations of the baits
+        ArrayList<Integer> xLocations = new ArrayList<Integer>();
+        for (int i=2; i<sizeOfArena-2; i++) {
+            xLocations.add(new Integer(i));
+        }
+        Collections.shuffle(xLocations);
+        
+        //Creating y locations of the baits
+        ArrayList<Integer> yLocations = new ArrayList<Integer>();
+        for (int i=2; i<sizeOfArena-2; i++) {
+            yLocations.add(new Integer(i));
+        }
+        Collections.shuffle(yLocations);
+        
+        //creating pieces for baits
+        Piece[] baitPieces = new Piece[30];
+        
+        for(int i=0; i<sizeOfArena; i++)
+        {
+            baitPieces[i] = new Piece(xLocations.get(i),yLocations.get(i),2);
+        }
+        
+        //create one special bait and fill other with regularBaits
+        Bait tmp = new BonusPointBait(baitPieces[0]);
+        baits.add(occurence.get(0),tmp);
+        tmp = new ExtendingBait(baitPieces[1]);
+        baits.add(occurence.get(1),tmp);
+        tmp = new PoisonousBait(baitPieces[2]);
+        baits.add(occurence.get(2),tmp);
+        tmp = new ShorteningBait(baitPieces[3]);
+        baits.add(occurence.get(3),tmp);
+        tmp = new SuperSnakeBait(baitPieces[4]);
+        baits.add(occurence.get(4),tmp);
+        tmp = new UpsideDownBait(baitPieces[5]);
+        baits.add(occurence.get(5),tmp);
+        
+        for(int i=6; i<BAIT_NUM;i++)
+        {
+            tmp = new RegularBait(baitPieces[i]);
+            baits.add(occurence.get(i),tmp);
+        }
+        
+        
         
     }
     
