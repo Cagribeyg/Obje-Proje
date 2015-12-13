@@ -17,16 +17,14 @@ public class GameManager {
     
 	//constructor for the controller of the game
 	public GameManager(){
-            master = new MasterObserver();
-            createArena();
+         master = new MasterObserver();
 	}
 	
 	//additional createArena method for updating ???????
 	public void createArena(){
-            arena = new Arena(master);
+        arena = new Arena(master);
 	}
-        
-        
+           
     public void move()
     {
         moveStatus = arena.moveSnake();
@@ -51,6 +49,7 @@ public class GameManager {
 	public Arena getArena(){
 		return this.arena;
 	}
+	
 	//controls whether the snake eats the bait or not
 	public boolean didEat(Snake snake){
             if(arena.eat() == true){

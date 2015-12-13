@@ -24,12 +24,11 @@ public class GameOverPanel extends JPanel{
                 panel.setPreferredSize(new Dimension(dim1,dim2));
 		panel.add(title);
 		panel.add(gameOver);
-                add(panel, BorderLayout.CENTER);
+		
+        add(panel, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(dim1,dim2));
 		setBackground(Color.GRAY);
-                title.setBackground(Color.GRAY);
-                
-                
-
+        title.setBackground(Color.GRAY);
+ 
 	}
 }

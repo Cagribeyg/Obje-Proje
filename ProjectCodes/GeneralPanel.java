@@ -38,6 +38,7 @@ public class GeneralPanel extends JPanel{
 		backButton3 = new JButton("BACK MAIN");
 		backButton3.setFont(new Font ("Comic Sans MS", Font.ITALIC, 12));
 		backButton3.addActionListener(new BackButtonListener());
+		backButton4 = new JButton("BACK MAIN");
 		backButton4.setFont(new Font ("Comic Sans MS", Font.ITALIC, 12));
 		backButton4.addActionListener(new BackButtonListener());
 		
