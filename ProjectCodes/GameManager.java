@@ -10,15 +10,17 @@ public class GameManager {
 	private Arena arena;
 	private int highestScore; // WILL BE CHANGED
         private boolean moveStatus;
+        private MasterObserver master;
 	
 	//constructor for the controller of the game
 	public GameManager(){
+            master = new MasterObserver();
             createArena();
 	}
 	
 	//additional createArena method for updating ???????
 	public void createArena(){
-            arena = new Arena();
+            arena = new Arena(master);
 	}
         
         
