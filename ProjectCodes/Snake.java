@@ -64,6 +64,53 @@ class Snake
         b.setSnake(this);
     }
     
+    public void grow(int length)
+    {
+        Piece last = snakeParts.getLast();
+        if(length>0)
+        {
+            if(direction==0)
+            {
+                for(int i=1;i<length+1;i++)
+                {
+                    last.setY(last.getY()+i);
+                    snakeParts.addLast(last);
+                }
+            }
+            else if(direction==1)
+            {
+                for(int i=1;i<length+1;i++)
+                {
+                    last.setX(last.getX()-i);
+                    snakeParts.addLast(last);
+                }
+            }
+            else if(direction==2)
+            {
+                for(int i=1;i<length+1;i++)
+                {
+                    last.setX(last.getX()-i);
+                    snakeParts.addLast(last);
+                }
+            }
+            else
+            {
+                for(int i=1;i<length+1;i++)
+                {
+                    last.setX(last.getX()+i);
+                    snakeParts.addLast(last);
+                }
+            }    
+        }
+        else//lenth<0
+        {
+                for(int i=1;i<(-1)*length+1;i++)
+                {
+                    snakeParts.removeLast();
+                }
+        }
+    }
+    
     public Piece moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
     {
         Piece last = snakeParts.pollLast();

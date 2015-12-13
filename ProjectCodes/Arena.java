@@ -99,7 +99,7 @@ public class Arena extends Observer{
         //creating pieces for baits
         Piece[] baitPieces = new Piece[30];
         
-        for(int i=0; i<sizeOfArena; i++)
+        for(int i=0; i<BAIT_NUM; i++)
         {
             baitPieces[i] = new Piece(xLocations.get(i),yLocations.get(i),2);
         }
