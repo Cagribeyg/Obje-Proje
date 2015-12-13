@@ -14,10 +14,10 @@ public class GeneralPanel extends JPanel{
 	private HelpPanel help;
 	private CreditsPanel credits;
 	public GamePanel gamePanel;
-	//public GameOverPanel gameOver;
+	public GameOverPanel gameOver;
 	private WelcomingPanel welcome;
 	public JPanel GENERAL; 
-	public JButton backButton1, backButton2, backButton3;
+	public JButton backButton1, backButton2, backButton3, backButton4;
 	private CardLayout card;
 	
 	//CONSTANTS
@@ -38,6 +38,8 @@ public class GeneralPanel extends JPanel{
 		backButton3 = new JButton("BACK MAIN");
 		backButton3.setFont(new Font ("Comic Sans MS", Font.ITALIC, 12));
 		backButton3.addActionListener(new BackButtonListener());
+		backButton4.setFont(new Font ("Comic Sans MS", Font.ITALIC, 12));
+		backButton4.addActionListener(new BackButtonListener());
 		
 		//Initializing the Inner Panels
 		welcome = new WelcomingPanel(this,PANEL_DIM1, PANEL_DIM2);
@@ -45,11 +47,10 @@ public class GeneralPanel extends JPanel{
 		help.add(backButton1, BorderLayout.PAGE_START);
 		credits = new CreditsPanel(PANEL_DIM1,PANEL_DIM2);
 		credits.add(backButton2, BorderLayout.PAGE_START);
-		gamePanel = new GamePanel(PANEL_DIM1,PANEL_DIM2);
+		gamePanel = new GamePanel(this, PANEL_DIM1,PANEL_DIM2);
 		gamePanel.add(backButton3, BorderLayout.PAGE_START);
-		
-		//gameOver = new GameOverPanel(PANEL_DIM1, PANEL_DIM2);
-		
+		gameOver = new GameOverPanel(PANEL_DIM1, PANEL_DIM2);
+		gameOver.add(backButton4, BorderLayout.PAGE_START);	
 		
 		//Initialization of Outer Panel
 		GENERAL = new JPanel();
@@ -63,6 +64,7 @@ public class GeneralPanel extends JPanel{
 		GENERAL.add(help, "Help");
 		GENERAL.add(credits, "Credits");
 		GENERAL.add(gamePanel, "GamePanel");
+		GENERAL.add(gameOver, "GameOver");
 
 		add(GENERAL);
 		card.show(GENERAL, "Welcome");
@@ -106,8 +108,12 @@ public class GeneralPanel extends JPanel{
 			revalidate();
 			repaint();
 		}
+		else if (ins == 4){
+			card.show(GENERAL, "GameOver");
+			revalidate();
+			repaint();
+		}
 		else
 			return;
-		
 	}
 }

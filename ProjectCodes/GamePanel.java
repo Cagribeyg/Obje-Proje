@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -7,18 +8,32 @@ public class GamePanel extends JPanel implements KeyListener,ActionListener{
 	//properties
 	GameManager manager;
 	private Timer timer; //for updating the panel
+	private GeneralPanel generalIns; //for returning to GeneralPanel at the end of the game
 	
-	public GamePanel(int dim1, int dim2){
+	public GamePanel(GeneralPanel panel, int dim1, int dim2){
 		
 		//initializations
+		this.generalIns = panel;
+		
 		manager = new GameManager();
 		addKeyListener(this);
-//		timer = new Timer(,this);
-//		timer.start();
-		
+		timer = new Timer(30, this);
+		timer.start();
+	
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(dim1,dim2));
 		setBackground(Color.GRAY);
+	}
+	
+	//creates the view on the screen
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+	    manager.getArena().createScreen(g);  
+	}
+
+	//for opening the GameOverPanel on the GeneralPanel
+	private void openGameOver(){
+		this.generalIns.updateView(4,this);
 	}
 	
 	//*****************************************************************

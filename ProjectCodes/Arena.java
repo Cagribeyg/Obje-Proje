@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.awt.event.*;
 import java.awt.Graphics;
+import javax.swing.*;
 
 
 /*
@@ -23,6 +24,7 @@ public class Arena extends Observer{
     private ArrayList<Bait> baits;
     private Random generator;
     private int baitIndex;
+    private Timer timer;
     
     //CONSTANTS
     private final int BAIT_NUM = 30;
@@ -51,8 +53,21 @@ public class Arena extends Observer{
         super.master = master;
         super.master.add(this);
         
-        
+        //initializing timer
+        timer = new Timer(30, this);
+        timer.start();
     }
+    
+    //creates the initial screen of the game
+	public void createScreen(Graphics g){
+		
+		//creating the arena View
+		for (int i = 0; i < sizeOfArena; i++ ){
+	    	for(int j = 0; j < sizeOfArena; j++){
+	    		board[i][j].draw(g);
+	    	}
+	    }
+	}
     
     public void createWalls()
     {
@@ -70,7 +85,6 @@ public class Arena extends Observer{
                     break;
                 }
             }
-        
     }
     
     public void createBaits()//creates the baits and fills the list with them
@@ -99,7 +113,7 @@ public class Arena extends Observer{
         //creating pieces for baits
         Piece[] baitPieces = new Piece[30];
         
-        for(int i=0; i<BAIT_NUM; i++)
+        for(int i=0; i< BAIT_NUM; i++)
         {
             baitPieces[i] = new Piece(xLocations.get(i),yLocations.get(i),2);
         }
@@ -185,7 +199,6 @@ public class Arena extends Observer{
 
     //updates the view of the arena
     public void update(Graphics g) {
-    	
     	//moving the snake
     	moveSnake();
     	
@@ -196,5 +209,10 @@ public class Arena extends Observer{
         		//repaint();
         	}
         }
+    }
+    
+    //for ending the game
+    public void endGame(){
+    	timer.stop();
     }
 }
