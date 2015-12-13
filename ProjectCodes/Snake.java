@@ -37,6 +37,25 @@ class Snake
     {
         if(this.isSuperSnake)
             return;//todo
+        this.printScore();
+    }
+    public void printScore()
+    {
+        int curr_score = this.getScore();
+        String str = Integer.toString(curr_score); 
+        PrintWriter outputStream = null;
+        
+        try
+        {
+            outputStream = new PrintWriter (new FileOutputStream("high_scores.txt"));   
+        }
+        catch(FileNotFoundException e)
+                {
+                    System.out.println("Error Opening File high_scores.txt");
+                }
+        outputStream.println(str);
+        outputStream.close();
+        
     }
     
     public void setLength(int size)
