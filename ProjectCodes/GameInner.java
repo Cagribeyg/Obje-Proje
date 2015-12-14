@@ -20,6 +20,7 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		requestFocusInWindow(true);
 	    manager.getArena().createScreen(g);  
 	}
 	
@@ -27,12 +28,14 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 	//  Represents a listener for key (action) events.
 	//*****************************************************************
     public void keyPressed(KeyEvent e) {
-    	System.out.println(0);
+
         if(e.getKeyCode() == KeyEvent.VK_LEFT) // for moving the left
             manager.changeDirection(false);
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT) // for moving the right
             manager.changeDirection(true);
     }
+    
+
    
     public void actionPerformed(ActionEvent e) {
 
@@ -42,7 +45,10 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
     
     //unused methods of KeyListener
     public void keyReleased(KeyEvent e) {
+
     }
     public void keyTyped(KeyEvent e) {
     }
+    
+    
 }

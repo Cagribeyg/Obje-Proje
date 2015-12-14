@@ -157,6 +157,7 @@ class Snake
             {
                 board[last.getX()][last.getY()] = null;//free the prev location
                 last.setY(yCoordinate-1);
+                last.setX(xCoordinate);
                 
                 board[last.getX()][last.getY()] = last;
             }  
@@ -178,6 +179,7 @@ class Snake
             {
                 board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate+1);
+                last.setY(yCoordinate);
                 board[last.getX()][last.getY()] = last;
             }
         	else if(board[dest.getX()+1][dest.getY()].getType() == 2)//bait!
@@ -195,6 +197,7 @@ class Snake
             {
                 board[last.getX()][last.getY()] = null;
                 last.setY(yCoordinate+1);
+                last.setX(xCoordinate);
                 board[last.getX()][last.getY()] = last;
             }
             
@@ -205,13 +208,14 @@ class Snake
             else //Collision!
                 return -1;
         }
-        else
+        else//direction 3
         {
             if(board[dest.getX()-1][dest.getY()] == null) //empty go johnny go
             {
                 board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate-1);
-                board[last.getX()][last.getY()] = null;
+                last.setY(yCoordinate);
+                board[last.getX()][last.getY()] = last;
             }
             
             else if(board[dest.getX()-1][dest.getY()].getType() == 2)//bait!
