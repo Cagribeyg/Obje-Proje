@@ -11,6 +11,9 @@ public class UpsideDownBait extends Bait{
   
   @Override 
   public void affect(){
+  	snake.setScore(snake.getScore()+1);
+        snake.setLength(snake.getLength()+1);
+        snake.grow(1);
   	snake.reverse();
   }
   
