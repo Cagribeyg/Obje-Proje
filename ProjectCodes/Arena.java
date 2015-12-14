@@ -45,6 +45,7 @@ public class Arena extends Observer{
         
         //creating snake
         snake = createSnake();
+        snake.initBoard(board);
         
         //Random generator
         generator = new Random();
@@ -78,8 +79,6 @@ public class Arena extends Observer{
                     }
                     y += HEIGHT;
                     
-                    
-
 	    	}
 	    	y = 0;
 	    	x += WIDTH;
@@ -215,14 +214,14 @@ public class Arena extends Observer{
 
     //updates the view of the arena
     public void update(Graphics g) {
-    	//moving the snake
-    	moveSnake();
-    	
+    	//moving the snake   	
     	createScreen(g);
+    	moveSnake();
     }
     
     //for ending the game
     public void endGame(){
     	timer.stop();
+    	System.exit(0);
     }
 }

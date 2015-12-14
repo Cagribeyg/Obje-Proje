@@ -33,6 +33,7 @@ class Snake
         snakeParts.add(parts[0]);//add head
         snakeParts.addLast(parts[1]);//add second part
         snakeParts.addLast(parts[2]);//add third part
+
         isSuperSnake = false;
         
     }
@@ -145,10 +146,8 @@ class Snake
     }
     
     public int moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
-    {                           //also checks collision //to do
-        
-        
-        Piece last = snakeParts.pollLast();
+    {                           //also checks collision //to do     
+        Piece last = snakeParts.getLast();
         int xCoordinate = snakeParts.getFirst().getX();
         int yCoordinate = snakeParts.getFirst().getY();
         Piece dest = snakeParts.getFirst();
@@ -173,19 +172,22 @@ class Snake
                 
         }
         else if(direction==1)
-        {            
+        { 
+ 			       
             if(board[dest.getX()+1][dest.getY()] == null) //empty go johnny go
             {
                 board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate+1);
                 board[last.getX()][last.getY()] = last;
-            }    
-            else if(board[dest.getX()+1][dest.getY()].getType() == 2)//bait!
+            }
+        	else if(board[dest.getX()+1][dest.getY()].getType() == 2)//bait!
             {
                 //to do
             }           
             else //Collision!
                 return -1;
+                     
+	            
         }
         else if(direction==2)
         {
@@ -219,7 +221,7 @@ class Snake
             else //Collision!
                 return -1;
         }
-        
+        snakeParts.remove(snakeParts.size()-1);
         snakeParts.addFirst(last);//we should change the coordinates
         
         return 0;

@@ -11,7 +11,7 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 	public GameInner(){
 		manager = new GameManager();
 		addKeyListener(this);
-		timer = new Timer(30, this);
+		timer = new Timer(500, this);
 		timer.start();
 		
 		setPreferredSize(new Dimension(1000,1000));
@@ -27,6 +27,7 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 	//  Represents a listener for key (action) events.
 	//*****************************************************************
     public void keyPressed(KeyEvent e) {
+    	System.out.println(0);
         if(e.getKeyCode() == KeyEvent.VK_LEFT) // for moving the left
             manager.changeDirection(false);
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT) // for moving the right
@@ -34,7 +35,9 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
     }
    
     public void actionPerformed(ActionEvent e) {
-        //notify
+
+        repaint();
+        manager.move();
     }
     
     //unused methods of KeyListener
