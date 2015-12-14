@@ -15,7 +15,7 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 		timer.start();
 		
 		setPreferredSize(new Dimension(1000,1000));
-		setBackground(Color.red);
+		setBackground(Color.gray);
 	}
 	
 	public void paintComponent(Graphics g){

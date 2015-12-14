@@ -109,14 +109,14 @@ public class Arena extends Observer{
     {          
         //Creating x locations of the baits
         ArrayList<Integer> xLocations = new ArrayList<Integer>();
-        for (int i=2; i<sizeOfArena-2; i++) {
+        for (int i=1; i<sizeOfArena-2; i++) {
             xLocations.add(new Integer(i));
         }
         Collections.shuffle(xLocations);
         
         //Creating y locations of the baits
         ArrayList<Integer> yLocations = new ArrayList<Integer>();
-        for (int i=2; i<sizeOfArena-2; i++) {
+        for (int i=1; i<sizeOfArena-2; i++) {
             yLocations.add(new Integer(i));
         }
         Collections.shuffle(yLocations);
@@ -154,7 +154,8 @@ public class Arena extends Observer{
             tmp = new RegularBait(baitPieces[i]);
             baits.add(tmp);
         }
-        
+        //for(int i=0;i<BAIT_NUM;i++)
+        //	System.out.println(baits.get(i).retrievePiece().getType());
         Collections.shuffle(baits);
             
     }
@@ -166,7 +167,9 @@ public class Arena extends Observer{
         
     	board[baits.get(0).retrievePiece().getX()][baits.get(0).retrievePiece().getY()] = baits.get(0).retrievePiece();
         Bait tmp = baits.get(0);
+        System.out.println("Bait"+tmp.retrievePiece().getType());
         baits.remove(0);
+        
         return tmp;
     }
     
@@ -221,18 +224,19 @@ public class Arena extends Observer{
     	//moving the snake   	
     	createScreen(g);
     	moveSnake();
-    	
+    	System.out.println(status);
     	if(status == -1)//die
     	{
             snake.die();
             endGame();
     	}
-    	else if (status ==1) //eat
+    	else if (status == 1) //eat
     	{
             snake.eatBait(current);
             current.affect();
             current  = giveBait();
     	}
+    	status=0;
     	
     }
     

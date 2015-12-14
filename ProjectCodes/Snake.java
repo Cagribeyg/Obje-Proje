@@ -179,11 +179,11 @@ class Snake
         int xCoordinate = snakeParts.getFirst().getX();
         int yCoordinate = snakeParts.getFirst().getY();
         Piece dest = snakeParts.getFirst();
+         board[last.getX()][last.getY()] = null;//free the prev location
         if(direction==0)
         {
             if(board[dest.getX()][dest.getY()-1] == null) //empty go johnny go
             {
-                board[last.getX()][last.getY()] = null;//free the prev location
                 last.setY(yCoordinate-1);
                 last.setX(xCoordinate);
                 
@@ -191,11 +191,10 @@ class Snake
             }  
             else if(board[dest.getX()][dest.getY()-1].getType() != 0 && board[dest.getX()][dest.getY()-1].getType() != 1)//bait!
             {
-                if(board[dest.getX()][dest.getY()-1].getType() == 2)//regular
-                {
-                    board[dest.getX()][dest.getY()-1] = null;
-                    return 1;
-                }
+
+                board[dest.getX()][dest.getY()-1] = null;
+                return 1;
+                
             }           
             else //Collision!
                 return -1;
@@ -206,18 +205,16 @@ class Snake
  			       
             if(board[dest.getX()+1][dest.getY()] == null) //empty go johnny go
             {
-                board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate+1);
                 last.setY(yCoordinate);
                 board[last.getX()][last.getY()] = last;
             }
             else if(board[dest.getX()+1][dest.getY()].getType() != 0 && board[dest.getX()+1][dest.getY()].getType() != 1)//bait!
             {
-                if(board[dest.getX()+1][dest.getY()].getType() == 2)
-                {
-                    board[dest.getX()+1][dest.getY()]=null;
-                    return 1;
-                }
+
+                board[dest.getX()+1][dest.getY()]=null;
+                return 1;
+                
             }           
             else //Collision!
                 return -1;
@@ -228,7 +225,6 @@ class Snake
         {
             if(board[dest.getX()][dest.getY()+1] == null) //empty go johnny go
             {
-                board[last.getX()][last.getY()] = null;
                 last.setY(yCoordinate+1);
                 last.setX(xCoordinate);
                 board[last.getX()][last.getY()] = last;
@@ -236,11 +232,10 @@ class Snake
             
             else if(board[dest.getX()][dest.getY()+1].getType() != 1 && board[dest.getX()][dest.getY()+1].getType() != 0)//bait!
             {
-                if(board[dest.getX()][dest.getY()+1].getType() == 2)
-                {
-                    board[dest.getX()][dest.getY()+1]=null;
-                    return 2;
-                }
+
+                board[dest.getX()][dest.getY()+1]=null;
+                return 1;
+                
             }           
             else //Collision!
                 return -1;
@@ -249,7 +244,6 @@ class Snake
         {
             if(board[dest.getX()-1][dest.getY()] == null) //empty go johnny go
             {
-                board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate-1);
                 last.setY(yCoordinate);
                 board[last.getX()][last.getY()] = last;
@@ -257,11 +251,10 @@ class Snake
             
             else if(board[dest.getX()-1][dest.getY()].getType() != 0 && board[dest.getX()-1][dest.getY()].getType() !=1)//bait!
             {
-                if(board[dest.getX()-1][dest.getY()].getType() == 2)
-                {
-                    board[dest.getX()-1][dest.getY()] = null;
-                    return 1;
-                }
+
+                board[dest.getX()-1][dest.getY()] = null;
+                return 1;
+                
             }           
             else //Collision!
                 return -1;
