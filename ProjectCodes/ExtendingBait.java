@@ -10,7 +10,17 @@ public class ExtendingBait extends Bait{
   
   @Override 
   public void affect(){
-  
+	  //Getting current length
+	  int currentLength = snake.getLength();
+	  //Getting current score
+	  int currentPoint = snake.getScore();
+	  //growing snake by 3 piece
+	  snake.grow(3);
+	  //Ýnitializing the current point
+	  int currentPoint = snake.getScore();
+	  //increasing score by 3
+	  snake.setScore(currentPoint+3);
+
   }
   
   @Override

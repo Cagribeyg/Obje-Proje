@@ -20,7 +20,7 @@ public class PoisonousBait extends Bait{
 
     @Override
     public void affect() {
-       
+       snake.die();
     }
 
     @Override
