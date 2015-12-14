@@ -59,10 +59,10 @@ public class GameManager {
 	//controls whether the snake eats the bait or not
 	public boolean didEat(Snake snake){
             if(arena.eat() == true){
-                    arena.getSnake().eatBait(arena.getActiveBait());
-                    return true;
+                arena.getSnake().eatBait(arena.getActiveBait());
+                return true;
             }
             else 
-                    return false;
+                return false;
 	}
 }

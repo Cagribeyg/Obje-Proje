@@ -2,9 +2,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.awt.event.*;
 import java.awt.Graphics;
-import javax.swing.*;
+import javax.swing.Timer;
 
 
 /*
@@ -26,6 +25,7 @@ public class Arena extends Observer{
     private int baitIndex;
     private Timer timer;
     private int status; //0 for moving, 1 for eating , -1 for dying
+    private Bait current;
     
     //CONSTANTS
     private final int BAIT_NUM = 20;
@@ -55,7 +55,7 @@ public class Arena extends Observer{
         //creating 30 baits and putting one to board
         baits = new ArrayList<Bait>();
         createBaits();
-        giveBait(); 
+        current  = giveBait(); 
         
         //initializing observers
         super.master = master;
@@ -160,12 +160,14 @@ public class Arena extends Observer{
     }
     
     //Places a random bait into the arena
-    public void giveBait(){
+    public Bait giveBait(){
         if(baits.size() == 0) //if there are no baits then create some
             createBaits();
         
     	board[baits.get(0).retrievePiece().getX()][baits.get(0).retrievePiece().getY()] = baits.get(0).retrievePiece();
+        Bait tmp = baits.get(0);
         baits.remove(0);
+        return tmp;
     }
     
     
@@ -222,12 +224,14 @@ public class Arena extends Observer{
     	
     	if(status == -1)//die
     	{
-    		snake.die();
-    		endGame();
+            snake.die();
+            endGame();
     	}
     	else if (status ==1) //eat
     	{
-    		
+            snake.eatBait(current);
+            current.affect();
+            current  = giveBait();
     	}
     	
     }

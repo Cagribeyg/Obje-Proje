@@ -96,46 +96,73 @@ class Snake
     public void grow(int length)
     {
         Piece last = snakeParts.getLast();
+        Piece first = snakeParts.getFirst();
+        Piece tmp;
         if(length>0)
-        {
+        {     
             if(direction==0)
-            {
-                for(int i=1;i<length+1;i++)
-                {
-                    last.setY(last.getY()+i);
-                    snakeParts.addLast(last);
-                    board[last.getX()][last.getY()] = last;
-                }
+            {   
+                tmp = new Piece(first.getX(),first.getY()-1,1);
+                snakeParts.addFirst(tmp);
+                board[first.getX()][first.getY()] = tmp;              
+                        
+                if(length>1){
+                    for(int i=1;i<length;i++)
+                    {
+                        tmp = new Piece(last.getX(),last.getY()+i,1);
+                        snakeParts.addLast(tmp);
+                        board[last.getX()][last.getY()] = tmp;
+                    }
+            }
             }
             else if(direction==1)
             {
-                for(int i=1;i<length+1;i++)
-                {
-                    last.setX(last.getX()-i);
-                    snakeParts.addLast(last);
-                    board[last.getX()][last.getY()] = last;
+                tmp = new Piece(first.getX()+1,first.getY(),1);
+                snakeParts.addFirst(tmp);
+                board[first.getX()][first.getY()] = tmp;              
+                        
+                if(length>1){
+                    for(int i=1;i<length;i++)
+                    {
+                        tmp = new Piece(last.getX()-i,last.getY(),1);
+                        snakeParts.addLast(tmp);
+                        board[last.getX()][last.getY()] = tmp;
+                    }
                 }
             }
             else if(direction==2)
             {
-                for(int i=1;i<length+1;i++)
-                {
-                    last.setX(last.getX()-i);
-                    snakeParts.addLast(last);
-                    board[last.getX()][last.getY()] = last;
+                tmp = new Piece(first.getX(),first.getY()+1,1);
+                snakeParts.addFirst(tmp);
+                board[first.getX()][first.getY()] = tmp;              
+                        
+                if(length>1){
+                    for(int i=1;i<length;i++)
+                    {
+                        tmp = new Piece(last.getX(),last.getY()-i,1);
+                        snakeParts.addLast(tmp);
+                        board[last.getX()][last.getY()] = tmp;
+                    }
                 }
             }
             else
             {
-                for(int i=1;i<length+1;i++)
-                {
-                    last.setX(last.getX()+i);
-                    snakeParts.addLast(last);
-                    board[last.getX()][last.getY()] = last;
+                tmp = new Piece(first.getX()-1,first.getY(),1);
+                snakeParts.addFirst(tmp);
+                board[first.getX()][first.getY()] = tmp;              
+                        
+                if(length>1){
+                    for(int i=1;i<length;i++)
+                    {
+                        tmp = new Piece(last.getX()+i,last.getY(),1);
+                        snakeParts.addLast(tmp);
+                        board[last.getX()][last.getY()] = tmp;
+                    }
                 }
-            }    
+            } 
+
         }
-        else//lenth<0
+        else if(length<snakeParts.size())//lenth<0 // todo
         {
                 for(int i=1;i<(-1)*length+1;i++)
                 {
@@ -166,7 +193,8 @@ class Snake
             {
                 if(board[dest.getX()][dest.getY()-1].getType() == 2)//regular
                 {
-                                        
+                    board[dest.getX()][dest.getY()-1] = null;
+                    return 1;
                 }
             }           
             else //Collision!
@@ -183,9 +211,13 @@ class Snake
                 last.setY(yCoordinate);
                 board[last.getX()][last.getY()] = last;
             }
-        	else if(board[dest.getX()+1][dest.getY()].getType() == 2)//bait!
+            else if(board[dest.getX()+1][dest.getY()].getType() != 0 && board[dest.getX()+1][dest.getY()].getType() != 1)//bait!
             {
-                //to do
+                if(board[dest.getX()+1][dest.getY()].getType() == 2)
+                {
+                    board[dest.getX()+1][dest.getY()]=null;
+                    return 1;
+                }
             }           
             else //Collision!
                 return -1;
@@ -202,9 +234,13 @@ class Snake
                 board[last.getX()][last.getY()] = last;
             }
             
-            else if(board[dest.getX()][dest.getY()+1].getType() != 2)//bait!
+            else if(board[dest.getX()][dest.getY()+1].getType() != 1 && board[dest.getX()][dest.getY()+1].getType() != 0)//bait!
             {
-                //to do
+                if(board[dest.getX()][dest.getY()+1].getType() == 2)
+                {
+                    board[dest.getX()][dest.getY()+1]=null;
+                    return 2;
+                }
             }           
             else //Collision!
                 return -1;
@@ -219,9 +255,13 @@ class Snake
                 board[last.getX()][last.getY()] = last;
             }
             
-            else if(board[dest.getX()-1][dest.getY()].getType() == 2)//bait!
+            else if(board[dest.getX()-1][dest.getY()].getType() != 0 && board[dest.getX()-1][dest.getY()].getType() !=1)//bait!
             {
-                //to do
+                if(board[dest.getX()-1][dest.getY()].getType() == 2)
+                {
+                    board[dest.getX()-1][dest.getY()] = null;
+                    return 1;
+                }
             }           
             else //Collision!
                 return -1;
