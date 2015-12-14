@@ -15,7 +15,7 @@ public class GamePanel extends JPanel{
 		
 		//initializations
 		this.generalIns = panel;
-		general = new GameInner();
+		general = new GameInner(dim1, dim2);
 		general.setPreferredSize(new Dimension(dim1,dim2));
 	
 		setLayout(new BorderLayout());

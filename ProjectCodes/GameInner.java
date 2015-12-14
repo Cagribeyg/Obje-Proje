@@ -8,13 +8,13 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 	private GameManager manager;
 	private Timer timer;
 	
-	public GameInner(){
+	public GameInner(int dim1, int dim2){
 		manager = new GameManager();
 		addKeyListener(this);
 		timer = new Timer(100, this);
 		timer.start();
 		
-		setPreferredSize(new Dimension(1000,1000));
+		setPreferredSize(new Dimension(dim1,dim2));
 		setBackground(Color.gray);
 	}
 	
