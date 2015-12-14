@@ -25,10 +25,15 @@ public class GameManager {
     public void createArena(){
     arena = new Arena(master);
     }
+    
+    public void notify(Graphics g)
+    {
+    	master.notifyObservers(g);
+    }
            
     public void move()
     {
-        moveStatus = arena.moveSnake();
+        arena.moveSnake();
     }
     
     public void changeDirection(boolean toRight)

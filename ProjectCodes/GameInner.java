@@ -21,7 +21,7 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		requestFocusInWindow(true);
-	    manager.getArena().createScreen(g);  
+	    manager.notify(g);  
 	}
 	
 	//*****************************************************************
@@ -38,9 +38,7 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
 
    
     public void actionPerformed(ActionEvent e) {
-
         repaint();
-        manager.move();
     }
     
     //unused methods of KeyListener

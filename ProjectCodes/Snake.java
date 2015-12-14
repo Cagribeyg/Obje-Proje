@@ -42,7 +42,8 @@ class Snake
     {
         if(this.isSuperSnake)
             return;//todo
-                this.printScore();
+            
+        this.printScore();
     }
     public void printScore()
     {

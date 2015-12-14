@@ -25,6 +25,7 @@ public class Arena extends Observer{
     private Random generator;
     private int baitIndex;
     private Timer timer;
+    private int status; //0 for moving, 1 for eating , -1 for dying
     
     //CONSTANTS
     private final int BAIT_NUM = 20;
@@ -35,6 +36,7 @@ public class Arena extends Observer{
     //constructor
     public Arena(MasterObserver master)
     {
+    	status=0;
         //creating the board
         board = new Piece[sizeOfArena][];//Size may be change
         for(int i=0;i<sizeOfArena;i++)
@@ -201,9 +203,9 @@ public class Arena extends Observer{
     	return baits.get(baitIndex);
     }
     
-    public int moveSnake()
+    public void moveSnake()
     {
-       return snake.moveRegular();
+       status = snake.moveRegular();
        
     }
     
@@ -217,11 +219,22 @@ public class Arena extends Observer{
     	//moving the snake   	
     	createScreen(g);
     	moveSnake();
+    	
+    	if(status == -1)//die
+    	{
+    		snake.die();
+    		endGame();
+    	}
+    	else if (status ==1) //eat
+    	{
+    		
+    	}
+    	
     }
     
     //for ending the game
     public void endGame(){
-    	timer.stop();
+    //	timer.stop();
     	System.exit(0);
     }
 }
