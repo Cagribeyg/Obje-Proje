@@ -27,8 +27,10 @@ public class Arena extends Observer{
     private Timer timer;
     
     //CONSTANTS
-    private final int BAIT_NUM = 30;
-    private final int sizeOfArena = 25;
+    private final int BAIT_NUM = 15;
+    private final int sizeOfArena = 20;
+    private final int WIDTH=10;
+    private final int HEIGHT=10;
     
     //constructor
     public Arena(MasterObserver master)
@@ -61,18 +63,22 @@ public class Arena extends Observer{
     }
     
     //creates the initial screen of the game
-	public void createScreen(Graphics g){
-		int factor=10;
-		//creating the arena View
-		for (int i = 0; i < sizeOfArena; i++ ){
-	    	for(int j = 0; j < sizeOfArena; j++){
-	    		if(board[i][j] != null)
-	    		{
-	    			board[i][j].setFactor(factor);
-	    			board[i][j].draw(g);
-	    			factor +=10;
-	    		}
-	    			
+	public void createScreen(Graphics g){            
+            //coordinates
+            int x=0;
+            int y=0;   	
+            //creating the arena View
+            for (int i = 0; i < sizeOfArena; i++ ){                            
+                for(int j = 0; j < sizeOfArena; j++){
+                    if(board[i][j] != null)
+                    {   
+                        board[i][j].setFactors(x,y);   
+                        board[i][j].draw(g);
+                        y += HEIGHT;
+                    }
+                    y = 0;
+                    x += WIDTH;
+
 	    	}
 	    }
 	}
@@ -112,24 +118,30 @@ public class Arena extends Observer{
         Collections.shuffle(yLocations);
         
         //creating pieces for baits
-        Piece[] baitPieces = new Piece[30];
+        Piece[] baitPieces = new Piece[BAIT_NUM];
         
-        for(int i=0; i< BAIT_NUM-20; i++)
+        for(int i=0; i< BAIT_NUM; i++)
         {
             baitPieces[i] = new Piece(xLocations.get(i),yLocations.get(i),2);
         }
         
         //create one special bait and fill other with regularBaits
+        baitPieces[0].setType(3);
         Bait tmp = new BonusPointBait(baitPieces[0]);
         baits.add(tmp);
+        baitPieces[1].setType(4);
         tmp = new ExtendingBait(baitPieces[1]);
         baits.add(tmp);
+        baitPieces[2].setType(5);
         tmp = new PoisonousBait(baitPieces[2]);
         baits.add(tmp);
+        baitPieces[3].setType(6);
         tmp = new ShorteningBait(baitPieces[3]);
         baits.add(tmp);
+        baitPieces[4].setType(7);
         tmp = new SuperSnakeBait(baitPieces[4]);
         baits.add(tmp);
+        baitPieces[5].setType(8);
         tmp = new UpsideDownBait(baitPieces[5]);
         baits.add(tmp);
         
@@ -145,12 +157,13 @@ public class Arena extends Observer{
     
     //Places a random bait into the arena
     public void giveBait(){
-        if(baits.size() == 0) //if there are no baits then create 30
+        if(baits.size() == 0) //if there are no baits then create some
             createBaits();
         
     	board[baits.get(0).retrievePiece().getX()][baits.get(0).retrievePiece().getY()] = baits.get(0).retrievePiece();
         baits.remove(0);
     }
+    
     
     public Snake createSnake()
     {
@@ -186,15 +199,10 @@ public class Arena extends Observer{
     	return baits.get(baitIndex);
     }
     
-    public boolean moveSnake()
+    public int moveSnake()
     {
-        Piece tail = snake.getTail();
-        Piece newHead = snake.moveRegular();
-        if(newHead == null)
-            return false;
-        board[tail.getX()][tail.getY()] = null;
-        board[newHead.getX()][newHead.getY()] = newHead;
-        return true;
+       return snake.moveRegular();
+       
     }
     
     //controls whether the snake has eaten the current bait or not
@@ -207,13 +215,7 @@ public class Arena extends Observer{
     	//moving the snake
     	moveSnake();
     	
-    	//redrawing the arena
-        for (int i = 0; i < sizeOfArena; i++ ){
-        	for(int j = 0; j < sizeOfArena; j++){
-        		board[i][j].draw(g);
-        		//repaint();
-        	}
-        }
+    	createScreen(g);
     }
     
     //for ending the game

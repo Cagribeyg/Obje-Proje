@@ -8,23 +8,23 @@ import javax.swing.*;
 
 public class GameManager {
 	
-	//Instances
-	private Arena arena;
-	private int highestScore; // WILL BE CHANGED
-    private boolean moveStatus;
+    //Instances
+    private Arena arena;
+    private int highestScore; // WILL BE CHANGED
+    private int moveStatus;
     private MasterObserver master;
     private Timer timer;
     
-	//constructor for the controller of the game
-	public GameManager(){
-         master = new MasterObserver();
-         createArena();
-	}
-	
-	//additional createArena method for updating ???????
-	public void createArena(){
-        arena = new Arena(master);
-	}
+    //constructor for the controller of the game
+    public GameManager(){
+     master = new MasterObserver();
+     createArena();
+    }
+
+    //additional createArena method for updating ???????
+    public void createArena(){
+    arena = new Arena(master);
+    }
            
     public void move()
     {
@@ -37,7 +37,7 @@ public class GameManager {
     }
 	//controls whether the snake has crashes the walls or not
 	public boolean didCollide(Snake snake){
-            if(!moveStatus){ // todo
+            if(moveStatus == -1){ // todo
                     arena.getSnake().die();
                     arena.endGame();
                     return true;
@@ -48,7 +48,7 @@ public class GameManager {
 	}
 	
 	public Arena getArena(){
-		return this.arena;
+            return this.arena;
 	}
 	
 	//controls whether the snake eats the bait or not

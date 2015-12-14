@@ -29,12 +29,12 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_LEFT) // for moving the left
             manager.changeDirection(false);
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT) // for moving the right
+        else if(e.getKeyCode() == KeyEvent.VK_RIGHT) // for moving the right
             manager.changeDirection(true);
     }
    
     public void actionPerformed(ActionEvent e) {
-        //repaint();
+        //notify
     }
     
     //unused methods of KeyListener

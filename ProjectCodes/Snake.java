@@ -144,7 +144,7 @@ class Snake
         }
     }
     
-    public Piece moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
+    public int moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
     {                           //also checks collision //to do
         
         
@@ -155,59 +155,74 @@ class Snake
         if(direction==0)
         {
             if(board[dest.getX()][dest.getY()-1] == null) //empty go johnny go
+            {
+                board[last.getX()][last.getY()] = null;//free the prev location
                 last.setY(yCoordinate-1);
-            
+                
+                board[last.getX()][last.getY()] = last;
+            }  
             else if(board[dest.getX()][dest.getY()-1].getType() != 0 && board[dest.getX()][dest.getY()-1].getType() != 1)//bait!
             {
-                if(board[dest.getX()][dest.getY()-1].getType() == 2)
+                if(board[dest.getX()][dest.getY()-1].getType() == 2)//regular
                 {
-                    
+                                        
                 }
             }           
             else //Collision!
-                return null;
+                return -1;
                 
         }
         else if(direction==1)
         {            
             if(board[dest.getX()+1][dest.getY()] == null) //empty go johnny go
+            {
+                board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate+1);
-            
+                board[last.getX()][last.getY()] = last;
+            }    
             else if(board[dest.getX()+1][dest.getY()].getType() == 2)//bait!
             {
                 //to do
             }           
             else //Collision!
-                return null;
+                return -1;
         }
         else if(direction==2)
         {
             if(board[dest.getX()][dest.getY()+1] == null) //empty go johnny go
+            {
+                board[last.getX()][last.getY()] = null;
                 last.setY(yCoordinate+1);
+                board[last.getX()][last.getY()] = last;
+            }
             
             else if(board[dest.getX()][dest.getY()+1].getType() != 2)//bait!
             {
                 //to do
             }           
             else //Collision!
-                return null;
+                return -1;
         }
         else
         {
             if(board[dest.getX()-1][dest.getY()] == null) //empty go johnny go
+            {
+                board[last.getX()][last.getY()] = null;
                 last.setX(xCoordinate-1);
+                board[last.getX()][last.getY()] = null;
+            }
             
             else if(board[dest.getX()-1][dest.getY()].getType() == 2)//bait!
             {
                 //to do
             }           
             else //Collision!
-                return null;
+                return -1;
         }
         
         snakeParts.addFirst(last);//we should change the coordinates
         
-        return last;
+        return 0;
         
         //We must change the arena according to this //done!
     }

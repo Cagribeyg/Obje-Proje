@@ -21,11 +21,10 @@ class Piece {
     private int type; //0 for arena walls, 1 for snake, 2 for baits
     private Image image;
     private final Toolkit MY_TOOLS; 
-    private int factor;
+    private int xFactor,yFactor;
     
     public Piece(int x,int y,int type)
     {
-    	factor=0;
         this.x=x;
         this.y=y;
         this.type=type;
@@ -88,9 +87,20 @@ class Piece {
        this.y=y;
    }
    
+   public void setFactors(int x,int y)
+   {
+       xFactor = x;
+       yFactor = y;
+   }
+   
    public int getX()
    {
        return x;
+   }
+   
+   public void setType(int x)
+   {
+       type = x;
    }
    
    public int getY()
@@ -115,14 +125,7 @@ class Piece {
    public void draw(Graphics g)
    {
 	   if( !(image == null))
-		   g.drawImage(image, x+factor, y, null);
+		   g.drawImage(image, xFactor, yFactor, null);
    }
-
-
-public void setFactor(int factor2) {
-	// TODO Auto-generated method stub
-	factor =factor2;
-	
-}
    
 }
