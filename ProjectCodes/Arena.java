@@ -27,8 +27,8 @@ public class Arena extends Observer{
     private Timer timer;
     
     //CONSTANTS
-    private final int BAIT_NUM = 15;
-    private final int sizeOfArena = 20;
+    private final int BAIT_NUM = 20;
+    private final int sizeOfArena = 70;
     private final int WIDTH=10;
     private final int HEIGHT=10;
     
@@ -74,12 +74,15 @@ public class Arena extends Observer{
                     {   
                         board[i][j].setFactors(x,y);   
                         board[i][j].draw(g);
-                        y += HEIGHT;
+                        
                     }
-                    y = 0;
-                    x += WIDTH;
+                    y += HEIGHT;
+                    
+                    
 
 	    	}
+	    	y = 0;
+	    	x += WIDTH;
 	    }
 	}
     
