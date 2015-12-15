@@ -1,8 +1,15 @@
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.StringTokenizer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -43,25 +50,81 @@ class Snake
         if(this.isSuperSnake)
             return;//todo
             
-        this.printScore();
+        //this.printScore();
     }
-    public void printScore()
-    {
-        int curr_score = this.getScore();
-        String str = Integer.toString(curr_score); 
-        PrintWriter outputStream = null;
-        
-        try
-        {
-            outputStream = new PrintWriter (new FileOutputStream("high_scores.txt"));   
+    private BufferedWriter writer;
+    private BufferedReader reader;
+    private FileReader file;
+    private FileWriter fileWriter;
+    public void  writeScoreToFile(String name,String score){
+        String temp ="";
+        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<Integer> scores = new ArrayList<Integer>();
+        StringTokenizer tokenizer ;
+        try{
+            file = new FileReader("scores.txt");
+        reader = new BufferedReader(file);
+        while (reader.ready()){
+            temp = reader.readLine();
+            tokenizer = new StringTokenizer(temp);
+            names.add(tokenizer.nextToken());
+            scores.add(Integer.parseInt(tokenizer.nextToken()));
         }
-        catch(FileNotFoundException e)
+        reader.close();
+        names.add(name);
+        scores.add(Integer.parseInt(score));
+        int tempInt;
+        String tempString;
+        for(int i = 0; i < scores.size() - 1; i++){
+            for(int j = i+1 ; j < scores.size(); j++)
+            {
+                if(scores.get(i)> scores.get(j))
                 {
-                    System.out.println("Error Opening File high_scores.txt");
+                    tempInt = scores.get(i);
+                    scores.set(i, scores.get(j));
+                    scores.set(j, tempInt);
+                    tempString = names.get(i);
+                    names.set(i, names.get(j));
+                    names.set(j, tempString);
+
                 }
-        outputStream.println(str);
-        outputStream.close();
-        
+            }
+        }
+        fileWriter = new FileWriter("scores.txt");
+        temp ="";
+        if(names.size() <=  10)
+        {
+            for (int i = 0; i < names.size(); i++)
+                temp = temp + names.get(i) + " " + scores.get(i) + "\n";
+        }
+        else
+         {
+            for (int i = 0; i < 10; i++)
+                temp = temp + names.get(i) + " " + scores.get(i) + "\n";
+        }
+
+        writer = new BufferedWriter(fileWriter);
+        writer.write(temp);
+        writer.close();
+        }catch(IOException e){
+
+        }
+
+    }
+
+    //this method clears the high score list
+    public void clearAllScores(){
+        try{
+        fileWriter = new FileWriter("scores.txt");
+        String temp ="";
+        writer = new BufferedWriter(fileWriter);
+        writer.write(temp);
+        writer.close();
+        }catch(IOException e){
+
+        }
+
+
     }
     public void initBoard(Piece[][] board)
     {
