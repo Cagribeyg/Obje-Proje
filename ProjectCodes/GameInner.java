@@ -34,8 +34,6 @@ public class GameInner extends JPanel implements KeyListener,ActionListener{
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT) // for moving the right
             manager.changeDirection(true);
     }
-    
-
    
     public void actionPerformed(ActionEvent e) {
         repaint();

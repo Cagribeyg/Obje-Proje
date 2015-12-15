@@ -131,21 +131,27 @@ public class Arena extends Observer{
         
         //create one special bait and fill other with regularBaits
         baitPieces[0].setType(3);
+        baitPieces[0].setImage(3);
         Bait tmp = new BonusPointBait(baitPieces[0]);
         baits.add(tmp);
         baitPieces[1].setType(4);
+        baitPieces[1].setImage(4);
         tmp = new ExtendingBait(baitPieces[1]);
         baits.add(tmp);
         baitPieces[2].setType(5);
+        baitPieces[2].setImage(5);
         tmp = new PoisonousBait(baitPieces[2]);
         baits.add(tmp);
         baitPieces[3].setType(6);
+        baitPieces[3].setImage(6);
         tmp = new ShorteningBait(baitPieces[3]);
         baits.add(tmp);
         baitPieces[4].setType(7);
+        baitPieces[4].setImage(7);
         tmp = new SuperSnakeBait(baitPieces[4]);
         baits.add(tmp);
         baitPieces[5].setType(8);
+        baitPieces[5].setImage(8);
         tmp = new UpsideDownBait(baitPieces[5]);
         baits.add(tmp);
         

@@ -117,9 +117,52 @@ class Piece {
    {
        return image;
    }
-   public void setImage(Image img)
+   public void setImage(int type)
    {
-       image=img;
+	 //images are created
+       final String Piece_snake = "Piece_snake.png";
+       final String Piece_wall = "Piece_wall.png";
+       final String Piece_regularBait = "Piece_regularBait.png";
+       final String Piece_BonusPoint = "Piece_BonusPoint.png";
+       final String Piece_Extending = "Piece_Extending.png";
+       final String Piece_Poisonous = "Piece_Poisonous.png";
+       final String Piece_ShorteningBait = "Piece_ShorteningBait.png";
+       final String Piece_SuperSnake = "Piece_SuperSnake.png";
+       final String Piece_UpsideDown = "Piece_UpsideDown.png";
+       
+       /*
+        * TYPES: 0: wall, 1: snake, 2: RegularBait, 3: BonusPointBait, 4: ExtendingBait
+        * 		  5: PoisonousBait, 6: ShorteningBait, 7: SuperSnakeBait, 8: Piece_UpsideDown
+        */
+       if(type == 0){
+       	image = MY_TOOLS.getImage(Piece_wall);
+       }
+       else if(type == 1){
+       	image = MY_TOOLS.getImage(Piece_snake);
+       }
+       else if (type == 2){
+       	image = MY_TOOLS.getImage(Piece_regularBait);
+       }
+       else if (type == 3){
+       	image = MY_TOOLS.getImage(Piece_BonusPoint);
+       }
+       else if(type == 4){
+       	image = MY_TOOLS.getImage(Piece_Extending);
+       }
+       else if(type == 5){
+       	image = MY_TOOLS.getImage(Piece_Poisonous);
+       }
+       else if(type == 6){
+       	image = MY_TOOLS.getImage(Piece_ShorteningBait);
+       }
+       else if(type == 7){
+       	image = MY_TOOLS.getImage(Piece_SuperSnake);
+       }
+       else if(type == 8){
+       	image = MY_TOOLS.getImage(Piece_UpsideDown);
+       }
+       else 
+       	image = null;
    }
   
    public void draw(Graphics g)
