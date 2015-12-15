@@ -28,6 +28,7 @@ class Snake
     private LinkedList<Piece> snakeParts;
     private int direction; //0 is up, 1 is right,2 is down, 3 is left
     private boolean isSuperSnake;
+    private int status;
     private Piece[][] board;//this board is need for the movement of the snake and eating and stuff like that very crucial
     
     public Snake(Piece[] parts)
@@ -35,6 +36,7 @@ class Snake
         length = 3;
         score = 0;
         direction = 1;
+        status=0;
         snakeParts = new LinkedList<Piece>();
         
         snakeParts.add(parts[0]);//add head
@@ -50,7 +52,7 @@ class Snake
         if(this.isSuperSnake)
             return;//todo
             
-        //this.printScore();
+        status = -1;
     }
     private BufferedWriter writer;
     private BufferedReader reader;
@@ -235,6 +237,10 @@ class Snake
                 }
         }
     }
+    public int getStatus()
+    {
+    	return status;
+    }
     
     public int moveRegular() //regular movement of the snake. Simply get the last piece and put it to the end so it is like movement.
     {                           //also checks collision //to do     
@@ -256,11 +262,15 @@ class Snake
             {
 
                 board[dest.getX()][dest.getY()-1] = null;
-                return 1;
+                status = 1;
+                return status;
                 
             }           
             else //Collision!
-                return -1;
+            {
+            	status = -1;
+            	return status;
+            }
                 
         }
         else if(direction==1)
@@ -276,11 +286,15 @@ class Snake
             {
 
                 board[dest.getX()+1][dest.getY()]=null;
-                return 1;
+                status = 1;
+                return status;
                 
             }           
             else //Collision!
-                return -1;
+            {
+            	status = -1;
+            	return status;
+            }
                      
 	            
         }
@@ -297,11 +311,15 @@ class Snake
             {
 
                 board[dest.getX()][dest.getY()+1]=null;
-                return 1;
+                status = 1;
+                return status;
                 
             }           
             else //Collision!
-                return -1;
+            {
+            	status = -1;
+            	return status;
+            }
         }
         else//direction 3
         {
@@ -316,16 +334,21 @@ class Snake
             {
 
                 board[dest.getX()-1][dest.getY()] = null;
-                return 1;
+                status = 1;
+                return status;
                 
             }           
             else //Collision!
-                return -1;
+            {
+            	status = -1;
+            	return status;
+            }
+                
         }
         snakeParts.remove(snakeParts.size()-1);
         snakeParts.addFirst(last);//we should change the coordinates
-        
-        return 0;
+        status=0;
+        return status;
         
         //We must change the arena according to this //done!
     }

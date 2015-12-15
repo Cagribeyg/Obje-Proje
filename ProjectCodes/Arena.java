@@ -231,17 +231,18 @@ public class Arena extends Observer{
     	createScreen(g);
     	moveSnake();
     	System.out.println(status);
-    	if(status == -1)//die
-    	{
-            snake.die();
-            endGame();
-    	}
-    	else if (status == 1) //eat
+    	if (status == 1) //eat
     	{
             snake.eatBait(current);
             current.affect();
             current  = giveBait();
     	}
+    	status = snake.getStatus(); //this is because if the bait was poisonous or not
+    	if(status == -1)//die
+    	{
+            endGame();
+    	}
+    	
     	status=0;
     	
     }
